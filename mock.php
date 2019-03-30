@@ -1,7 +1,11 @@
 <?php
 
 session_start();
+
+$cq = isset($_GET['cq']) ? $_GET['cq'] : '1';
+$cq = (int)$cq;
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : '';
+$selectedAns = isset($_GET['sa']) ? $_GET['sa'] : '';
 if ($user == ''){
      echo "<script>document.location.href='index.php';</script>";
 }
@@ -59,36 +63,116 @@ echo '
         </style>
         ';
         include("connect_open.php");
-        $questions = mysql_query("SELECT Id , question , total FROM questions");
-	echo'<body style="background:black;opacity:0.95;background-image:  url(\'/img/home.png\');background-attachment: fixed; background-position: center;">
+        $questions = mysql_query("SELECT Id , question , total FROM questions WHERE Id = '".$cq."'");
+	echo'<body style="background:black;height:110%;opacity:0.95;background-image:  url(\'/img/home.png\');background-attachment: fixed; background-position: center;">
                <a href="logout.php" style="z-index:1;float:right;margin-right:2%;margin-top:1%;"><h3 style="color:blue;">Logout</h3></a>
                <div class="container" style="z-index:-1;margin-top:10%;background:white;">
 			<header class="codrops-header" style="">
                             <h4 style="float:left;">Welcome '.$_SESSION['name'].'</h4>
 			</header>
 			<section class="main" style="margin-top:1%;">
-				<form  autocomplete="off" style="margin-left:10%;width:90%;" method="post">
+				<form name="form-question-'.$cq.'" id="form-question-'.$cq.'" autocomplete="off" style="margin-left:10%;width:90%;" method="post">
 				   ';
-                                    while ($currentQ = mysql_fetch_row($questions)){
+                                    $idQ = 0;
+                                    $totalPointsQ = 0;
+                                    while ($currentQ = mysql_fetch_row($questions)) {
                                         $idQ = $currentQ[0];
                                         echo "<br><div style='color:black;'><h3>".$idQ.") ".utf8_encode($currentQ[1])."</h3></div><br><br>";
                                         $totalPointsQ = $currentQ[2];
                                         $answers = mysql_query("SELECT Id , Id_Question, answer , code FROM answers WHERE Id_Question = '".$idQ."'");
+                                        //$listOfCorrectAnswers = split(',',$selectedAns);
+                                        //$cint = 0;
                                         while ($currentA = mysql_fetch_row($answers)){
-                                            
+                                            //$currentChecked = contains((string)$cint,$listOfCorrectAnswers);
                                             $weightAns = $currentA[3];
                                             $answer = $currentA[2];
-                                            if($totalPointsQ == 1){
-                                                echo "<h4><input style='cursor:pointer;' type='radio' name='".$idQ."' value='".$weightAns."'> ".utf8_encode($answer)."</input></h4><br>";
+                                            if($totalPointsQ == 1) {
+                                               echo "<h4><input style='cursor:pointer;' type='radio'   name='".$idQ."' value='".$weightAns."'> ".utf8_encode($answer)."</input></h4><br>";
+                                            } else {
+                                               echo "<h4><input style='cursor:pointer' type='checkbox'  value='".$weightAns."'> ".utf8_encode($answer)."</input></h4><br>";
                                             }
-                                            else {
-                                                echo "<h4><input style='cursor:pointer' type='checkbox' value='".$weightAns."'> ".utf8_encode($answer)."</input></h4><br>";
+                                            $cint++;
+                                        }
+                                    }
+                                   
+                                   echo '
+				</form>';
+                                
+                                $nextCQ = $cq + 1;
+                                $backCQ = $cq - 1;
+                                if ($cq > 1) {
+                                    echo '<input type="button" style="cursor:pointer;float:left" onclick="validateCQ('.$cq.','.$totalPointsQ.','.$backCQ.');" value="Back"></input>';
+                                }
+                                if ($cq == 80){
+                                    echo '<input type="button" style="cursor:pointer;float:center" onclick="submitExamn();" value="Submit Exam"></input>';
+                                }
+                                if ($cq < $_SESSION['totalQ']) {
+                                    echo '<input type="button" style="cursor:pointer;float:right" onclick="validateCQ('.$cq.','.$totalPointsQ.','.$nextCQ.');" value="Next"></input>';
+                                }
+                                echo'
+                                <script>
+                                    function submitExamn() {
+                                        var qac = "";
+                                        for (i = 1; i <= 80 ; i++) { 
+                                            if (qac = "") {
+                                                qac = i.toString() + "-" + sessionStorage.getItem(i.toString());
+                                            } else {
+                                                qac = qac + "," + i.toString() + "-" + sessionStorage.getItem(i.toString());
                                             }
                                         }
-                                   }
-                                   echo '
-				</form>
-                         </section>
+                                        var qans = "";
+                                        var leftAnyAns = false;
+                                        for (i = 1; i<= 80 ; i++) {
+                                            var currentAns = sessionStorage.getItem("answers-"+i.toString());
+                                            if (currentAns = "") { 
+                                                leftAnyAns = true;
+                                                break;
+                                            }
+                                            if (qans = "") {
+                                                qans = i.toString() + "-" + currentAns);
+                                            } else {
+                                                qans = qans + "," + i.toString() + "-" + currentAns);
+                                            }
+                                        }
+                                        if(leftAnyAns){
+                                            var ca = confirm("You have unanswered questions, you are sure you want to continue to see the results");
+                                            if (ca) {
+                                                document.location.href=\'submitResults.php?qac=\'+qac+\'&qans=\'+qans+\'\';
+                                            }
+                                        } else {
+                                            document.location.href=\'submitResults.php?qac=\'+qac+\'&qans=\'+qans+\'\';
+                                        }
+                                    }
+                                    
+                                    function validateCQ(currentQuestion, requiredPoints, nextQ){
+                                        var nameForm = "form-question-"+currentQuestion.toString();
+                                        var form = document.getElementById(nameForm);
+                                        var allInputs = form.getElementsByTagName("input");
+                                        var currentTotalPoints = 0;
+                                        var sa = "";
+                                        for (i=0; i < allInputs.length ; i++){
+                                            var currentInput = allInputs[i];
+                                            if(currentInput.checked){
+                                                if(sa == "") {
+                                                    sa = i.toString();
+                                                } else { 
+                                                    sa = sa + "," + i.toString();
+                                                }
+                                                currentTotalPoints += currentInput.value;
+                                            }
+                                        }
+                                        sessionStorage.setItem("answers-"+currentQuestion.toString(), sa);
+                                        var correctAnswer = requiredPoints == currentTotalPoints;
+                                        sessionStorage.setItem(currentQuestion.toString(), correctAnswer.toString());
+                                        var nextAnswers = sessionStorage.getItem("answers-"+nextQ.toString());
+                                        if(nextAnswers !== null) {
+                                            document.location.href=\'mock.php?cq=\'+nextQ+\'&sa=\'+nextAnswers+\'\';
+                                        } else {
+                                            document.location.href=\'mock.php?cq=\'+nextQ+\'\';
+                                        }
+                                    }
+                                </script> '; 
+                        echo' </section>
 			
 		</div>
 		

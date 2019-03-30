@@ -17,12 +17,14 @@ while ($row = mysql_fetch_row($queryUser)){
         $user = $row[1];
         $pass = $row[2];
 	$name = $row[3];
-        $_SESSION['currentQuestion'] = 1;
 	$_SESSION['user'] = isset($user) ? $user : "";
         $_SESSION['name'] = isset($name) ? $name : "";
 	$_SESSION['id'] = $iduser;
         
-	echo "<script>document.location.href='mock.php';</script>";
+        $queryNumberOfQuestions = mysql_query("SELECT Id FROM questions");
+        $_SESSION['totalQ'] = mysql_num_rows($queryNumberOfQuestions);
+        
+	echo "<script>document.location.href='mock.php?cq=1';</script>";
 }
 
 if(wrongUs){
