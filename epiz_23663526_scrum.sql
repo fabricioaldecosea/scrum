@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: sql312.epizy.com
--- Generation Time: Mar 28, 2019 at 08:48 PM
+-- Generation Time: Mar 30, 2019 at 09:44 PM
 -- Server version: 5.6.41-84.1
 -- PHP Version: 5.3.3
 
@@ -115,7 +115,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (74, 18, 'The Sprint is extended temporarlly. Lessons are taken to ensure it doesn''t happen again.', -1),
 (75, 18, 'The Sprint is extended and future Sprints use this new duration.', -1),
 (76, 19, 'Everyone in the Development Team is responisbe for quality.', 1),
-(77, 19, 'Scrum has no "teste" role.', 1),
+(77, 19, 'Scrum has no "tester" role.', 1),
 (78, 19, 'Tracking quality metrics.', -1),
 (79, 19, 'Finding bugs.', -1),
 (80, 19, 'Verifying the work of programmers.', -1),
@@ -125,7 +125,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (84, 20, 'False.', 1),
 (85, 20, 'True, but only after confirmation by the resource manager that the Team has enough capacity.', -1),
 (86, 20, 'False, the Scrum Master does that.', -1),
-(87, 21, 'The Product wner is accountable for ordering the Product Backlog.', 1),
+(87, 21, 'The Product Owner is accountable for ordering the Product Backlog.', 1),
 (88, 21, 'The Product Owner is one person.', 1),
 (89, 21, 'Multiple people can share the Product Owner role on a Scrum Team.', -1),
 (90, 21, 'The Product Owner can be influenced by a committee.', 1),
@@ -171,9 +171,9 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (130, 29, 'The event must take at least a minimum amount of time.', -1),
 (131, 30, 'True.', -1),
 (132, 30, 'False.', 1),
-(133, 31, 'It is a complete list of all work to be done in a Sprint.', 1),
-(134, 31, 'It is ordered by te Product Owner.', -1),
-(135, 31, 'It is the Development Team''s plan for the Sprint.', -1),
+(133, 31, 'It is a complete list of all work to be done in a Sprint.', -1),
+(134, 31, 'It is ordered by the Product Owner.', -1),
+(135, 31, 'It is the Development Team''s plan for the Sprint.', 1),
 (136, 31, 'Each task is estimated in hours.', -1),
 (137, 31, 'Every item has a designated owner.', -1),
 (138, 32, 'Two minutes per person.', -1),
@@ -205,7 +205,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (164, 37, 'Scrum is a framework for developing and sustaining complex products.', 1),
 (165, 38, 'New impediments for the Scrum Master to take care of.', 1),
 (166, 38, 'An updated Scrum board to make Sprint progress transparent for the stakeholders.', -1),
-(167, 38, 'An upated of completed tasks and of the remaining work so the Scrum Master can plan the next day.', -1),
+(167, 38, 'An updated of completed tasks and of the remaining work so the Scrum Master can plan the next day.', -1),
 (168, 38, 'A status report for the upper management indicating what each individual has done, will be doing, and what is impeding him/her.', -1),
 (169, 38, 'A shared understanding of the most important work to be undertaken next to achieve the best possible progress toward the Sprint goal.', 1),
 (170, 39, 'The Product Owner.', 1),
@@ -227,22 +227,22 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (186, 42, 'Risk,  where safer items are at the top, and riskier items are at the bottom.', -1),
 (187, 43, 'True.', -1),
 (188, 43, 'False.', 1),
-(189, 44, 'The level of uncertainty over the technology to be used.', -1),
+(189, 44, 'The level of uncertainty over the technology to be used.', 1),
 (190, 44, 'The risk of being disconnected from the stakeholders.', 1),
-(191, 44, 'The frequency at which team formation can be changed.', 1),
+(191, 44, 'The frequency at which team formation can be changed.', -1),
 (192, 44, 'The organization has mandated similar length sprints.', -1),
 (193, 45, 'By the Development Team deciding what work to do in a Sprint.', 1),
 (194, 45, 'By not allowing documentation.', -1),
 (195, 45, 'By removing titles for Development Team members.', 1),
-(196, 45, 'By preventing stakeholders from entering the development roo.', -1),
+(196, 45, 'By preventing stakeholders from entering the development room.', -1),
 (197, 45, 'By being a lightweight framework.', 1),
 (198, 46, 'Delegate the work to the concerned department.', -1),
 (199, 46, 'Add a Sprint to specifically resolve all security concerns.', -1),
 (200, 46, 'Have the Scrum Team create Product Backlog Items for each concern.', 1),
 (201, 46, 'Postpone the work until a specialist can perform a security audit and create a list of security-related Product Backlog items.', -1),
 (202, 46, 'Add security concerns to the definition of "Done".', 1),
-(203, 47, 'During the Sprint Planning meeting.', -1),
-(204, 47, 'At the beginning of the project.', 1),
+(203, 47, 'During the Sprint Planning meeting.', 1),
+(204, 47, 'At the beginning of the project.', -1),
 (205, 47, 'Prir to the Sprint Planning meeting.', -1),
 (206, 47, 'During the Sprint.', -1),
 (207, 48, 'It depends.', -1),
@@ -253,9 +253,9 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (212, 49, 'Collaborate with the Product Owner to determine what is possible and acceptable.', 1),
 (213, 49, 'Add a specialist to the Development Team.', -1),
 (214, 49, 'Defer the work to a more appropiate Sprint.', -1),
-(215, 50, 'Ensuring that the most valuable functionality is produced first, at all times.', 1),
+(215, 50, 'Ensuring that the most valuable functionality is produced first, at all times.', -1),
 (216, 50, 'Describing features as Use Cases.', -1),
-(217, 50, 'Providing the Development Team with detailed specifications.', -1),
+(217, 50, 'Providing the Development Team with detailed specifications.', 1),
 (218, 50, 'Creating detailed functional test cases.', -1),
 (219, 50, 'Interacting with stakeholders.', 1),
 (220, 51, 'At the ends of the Sprint.', -1),
@@ -266,7 +266,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (225, 52, 'Keeping stakeholders at bay.', -1),
 (226, 52, 'Directing the Development Team.', -1),
 (227, 52, 'Optimizing the value of the work the Development Team does.', 1),
-(228, 53, 'Existing teams propose how the would like to go about organizing into the new structure.', 1),
+(228, 53, 'Existing teams propose how they would like to go about organizing into the new structure.', 1),
 (229, 53, 'The Chief Product Owner determines the new team structures and assignments.', -1),
 (230, 53, 'Managers personally re-assign current subordinates to new teams.', -1),
 (231, 53, 'Managers collaborate to assign individuals to specific teams.', -1),
@@ -285,7 +285,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (244, 56, 'Develop at least one piece of functionality.', 1),
 (245, 56, 'Create an increment of potentially releasable software.', 1),
 (246, 56, 'Analyze, describe, and document the requirements for the subsequent Sprints.', -1),
-(247, 56, 'Make up a aplan for the rest of the project.', -1),
+(247, 56, 'Make up a plan for the rest of the project.', -1),
 (248, 57, 'The Product Owner represents their opinions.', -1),
 (249, 57, 'The Development Team self-manages and is the only management required at the Daily Scrum.', 1),
 (250, 57, 'The Scrum Master speaks on their behalf.', -1),
@@ -359,7 +359,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (318, 75, 'How conditions have changed and how the Product Backlog should evolve.', -1),
 (319, 75, 'Who is on the team and what team member roles will be.', -1),
 (320, 75, 'What to do and who will do it.', -1),
-(321, 75, 'What wen wrong in the last Spring and what to do differently this Sprint.', -1),
+(321, 75, 'What went wrong in the last Spring and what to do differently this Sprint.', -1),
 (322, 75, 'What can be done and how to do it.', 1),
 (323, 76, 'Immediately after the conlusion of the previous Sprint.', 1),
 (324, 76, 'The Monday following the Sprint Review.', -1),
@@ -374,7 +374,7 @@ INSERT INTO `answers` (`Id`, `Id_Question`, `answer`, `code`) VALUES
 (333, 78, 'The Development Team and Product Owner.', -1),
 (334, 78, 'The Scrum Team.', -1),
 (335, 78, 'The Scrum Master and Product Owner.', -1),
-(336, 79, 'Itenhances transparency for the Product Owner as a Development Team is not allowed to do additional feature development in a Sprint as long as there is technical debt.', -1),
+(336, 79, 'It enhances transparency for the Product Owner as a Development Team is not allowed to do additional feature development in a Sprint as long as there is technical debt.', -1),
 (337, 79, 'As development progresses and code is added, the system becomes more difficult to stabilize, which results in future work being slowed down in unpreditable ways.', 1),
 (338, 79, 'When calculated and estimated, the total amound of technical debt shows exactly how long until the Product Owner can release the Increment.', -1),
 (339, 79, 'It leads to false assumptions about the current state of the system, specifically of an Increment being releasable at the end of a Sprint.', 1),
@@ -452,13 +452,13 @@ INSERT INTO `questions` (`Id`, `question`, `total`) VALUES
 (34, 'Which of the following might the Scrum Team discuss during a Sprint Retrospective? (choose the best answer)', 1),
 (35, 'A Scrum Master is keeping a list of open impediments, but it is growing and he/she has been able to resolve only a small portion of the impediments. Which three techniques wuld be most helpful in this situation? (choose the best three answers)', 3),
 (36, 'Which statement best describes Scrum? (choose the best answer)', 1),
-(37, 'Which three of the following are true about Scrumm? (choose the best three answers)', 3),
+(37, 'Which three of the following are true about Scrum? (choose the best three answers)', 3),
 (38, 'One of the Scrum events is the Daily Scrum. What are two intended outcomes of the Daily Scrum? (choose the best two answers)', 2),
 (39, 'Who can abnormally terminate a Sprint? (choose the best answer)', 1),
 (40, 'What is the role of management in Scrum? (choose the best answer)', 1),
 (41, 'How should Product Backlog Items be chosen when multiple Scrum Teams work from the same Product Backlog? (choose the best answer)', 1),
 (42, 'The Product Backlog is ordered by: (choose the best answer)', 1),
-(43, 'True or False: When multiple teams work together on the same prduct, each team should maintain a separate Product Backlog', 1),
+(43, 'True or False: When multiple teams work together on the same product, each team should maintain a separate Product Backlog', 1),
 (44, 'What two factors are best considered when establishing the Sprint length? (choose the best two answers)', 2),
 (45, 'What are three ways Scrum promotes self-organization? (choose the best three answers)', 3),
 (46, 'What are two good ways for a Scrum Team to ensure security concerns are satisfied? (choose the best two answers)', 2),
@@ -500,6 +500,20 @@ INSERT INTO `questions` (`Id`, `question`, `total`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `resultsOfUsers`
+--
+
+CREATE TABLE IF NOT EXISTS `resultsOfUsers` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserId` int(11) NOT NULL,
+  `UserName` varchar(100) NOT NULL,
+  `Result` varchar(5) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -509,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user` varchar(40) NOT NULL,
   `pass` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `users`
@@ -525,7 +539,8 @@ INSERT INTO `users` (`Id`, `name`, `user`, `pass`) VALUES
 (7, 'Bruno', 'brunol', '6655456b2ed0352e4b5a3d00a60f7bcec33543a8'),
 (8, 'Stefania', 'stefaniao', '4ac12e04852b89e5c79ce758d484f6866d17b7f1'),
 (9, 'German', 'germanr', '23c8b913295ee5273707f16fa0e6c7b739c45929'),
-(10, 'Agust&iacute;n', 'agustinc', 'c0ab65f92e43cb59aae05c07b5e92bd6b8061418');
+(10, 'Agust&iacute;n', 'agustinc', 'c0ab65f92e43cb59aae05c07b5e92bd6b8061418'),
+(11, 'Ignacio', 'ignaciol', '97d6f1f62e7d867b2d3c23657e0c8f571f611441');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
