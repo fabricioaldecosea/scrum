@@ -3,9 +3,9 @@
 session_start();
 
 
+$user = isset($_SESSION['user']) ? $_SESSION['user'] : '';
 $qac = isset($_GET['qac']) ? $_GET['qac'] : '';
-$qans = isset($_SESSION['qans']) ? $_SESSION['qans'] : '';
-
+$qans = isset($_GET['qans']) ? $_GET['qans'] : '';
 if ($user == '' && $qac != '' && $qans != ''){
      echo "<script>document.location.href='index.php';</script>";
 }
@@ -59,27 +59,46 @@ echo '
 			<section class="main" style="margin-top:1%;">
 				  ';
                                   
-                                  $listOfCorrections = split(',',$qac);
-                                  $amountOfQuestions = 0;
+                                  $listOfCorrections = explode(',',$qac);
+                                  $amountOfQuestions = $_SESSION['totalQ'];
                                   $amountOfCorrectQuestions = 0;
-                                  while ($eachQuestionWithAnswerResult = $listOfCorrections) {
-                                      $questionWithAnswerArray = split('-',$eachQuestionWithAnswerResult);
-                                      if ($questionWithAnswerArray[1] == 'True') {
+                                  foreach ($listOfCorrections as $eachQuestionWithAnswerResult) {
+                                      $questionWithAnswerArray = explode('-',$eachQuestionWithAnswerResult);
+                                      if ($questionWithAnswerArray[1] == 'true') {
                                           $amountOfCorrectQuestions += 1;
                                       }
                                       $amountOfQuestions +=1;
                                   }
-                                  $percentage = $amountOfCorrectQuestions / $amountOfQuestions;
-                                  
-                                  if ($percentage > 85){
-                                        echo "Congratulations you pass your PSM1 exam simulator. Score: " + round($percentage,2);
+                                  $percentage = ($amountOfCorrectQuestions / $_SESSION['totalQ']) * 100;
+                                  $percentageToShow = round($percentage,2);
+                                  $percentageToCheck = round($percentage,0);
+                                  echo "<br>";
+                                  if ($percentageToCheck > 85){
+                                        echo '<h4 style="Color:green">Congratulations you pass your PSM1 exam simulator. Your score was '.$percentageToShow."%</h4>";
                                   } else {
-                                        echo "You didnt pass your PSM1 exam simulator. Score: " + round($percentage,2);
+                                        echo '<h4 style="Color:red">You didnt pass your PSM1 exam simulator. Your score was '.$percentageToShow."%</h4>";
                                   } 
-                                  
+                                  echo '<br><br><input type="button" style="cursor:pointer;" onclick="checkQuestions();" value="Check Questions"></input>';
+                                  echo '<input type="button" style="cursor:pointer;margin-left:4%;" onclick="backToMock();" value="Back To Mock (Try Again)"></input><br><br>';
                                 echo'
                                
                         </section>
+                        
+                        <script>
+                                    function backToMock() {
+                                       localStorage.clear();
+                                        //---------------------------------------------------------//
+                                       document.location.href=\'mock.php?cq=1\';
+                                          
+                                    }
+                                    
+                                    function checkQuestions() {
+                                       
+                                        //---------------------------------------------------------//
+                                        document.location.href=\'checkResults.php?qac=\'+"'.$qac.'"+\'&qans=\'+"'.$qans.'"+\'\';
+                                        //---------------------------------------------------------//
+                                    }
+                                </script> 
 			
 		</div>
 		
